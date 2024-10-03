@@ -1,0 +1,567 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		57B2BE972CAE8AE400527F61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 57B2BE7E2CAE8AE200527F61 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 57B2BE852CAE8AE200527F61;
+			remoteInfo = "Impulsum-AR";
+		};
+		57B2BEA12CAE8AE400527F61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 57B2BE7E2CAE8AE200527F61 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 57B2BE852CAE8AE200527F61;
+			remoteInfo = "Impulsum-AR";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		57B2BE862CAE8AE200527F61 /* Impulsum-AR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Impulsum-AR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		57B2BE962CAE8AE400527F61 /* Impulsum-ARTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Impulsum-ARTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		57B2BEA02CAE8AE400527F61 /* Impulsum-ARUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Impulsum-ARUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		57B2BE882CAE8AE200527F61 /* Impulsum-AR */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Impulsum-AR";
+			sourceTree = "<group>";
+		};
+		57B2BE992CAE8AE400527F61 /* Impulsum-ARTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Impulsum-ARTests";
+			sourceTree = "<group>";
+		};
+		57B2BEA32CAE8AE400527F61 /* Impulsum-ARUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Impulsum-ARUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		57B2BE832CAE8AE200527F61 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57B2BE932CAE8AE400527F61 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57B2BE9D2CAE8AE400527F61 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		57B2BE7D2CAE8AE200527F61 = {
+			isa = PBXGroup;
+			children = (
+				57B2BE882CAE8AE200527F61 /* Impulsum-AR */,
+				57B2BE992CAE8AE400527F61 /* Impulsum-ARTests */,
+				57B2BEA32CAE8AE400527F61 /* Impulsum-ARUITests */,
+				57B2BE872CAE8AE200527F61 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		57B2BE872CAE8AE200527F61 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				57B2BE862CAE8AE200527F61 /* Impulsum-AR.app */,
+				57B2BE962CAE8AE400527F61 /* Impulsum-ARTests.xctest */,
+				57B2BEA02CAE8AE400527F61 /* Impulsum-ARUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		57B2BE852CAE8AE200527F61 /* Impulsum-AR */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 57B2BEAA2CAE8AE400527F61 /* Build configuration list for PBXNativeTarget "Impulsum-AR" */;
+			buildPhases = (
+				57B2BE822CAE8AE200527F61 /* Sources */,
+				57B2BE832CAE8AE200527F61 /* Frameworks */,
+				57B2BE842CAE8AE200527F61 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				57B2BE882CAE8AE200527F61 /* Impulsum-AR */,
+			);
+			name = "Impulsum-AR";
+			packageProductDependencies = (
+			);
+			productName = "Impulsum-AR";
+			productReference = 57B2BE862CAE8AE200527F61 /* Impulsum-AR.app */;
+			productType = "com.apple.product-type.application";
+		};
+		57B2BE952CAE8AE400527F61 /* Impulsum-ARTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 57B2BEAD2CAE8AE400527F61 /* Build configuration list for PBXNativeTarget "Impulsum-ARTests" */;
+			buildPhases = (
+				57B2BE922CAE8AE400527F61 /* Sources */,
+				57B2BE932CAE8AE400527F61 /* Frameworks */,
+				57B2BE942CAE8AE400527F61 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				57B2BE982CAE8AE400527F61 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				57B2BE992CAE8AE400527F61 /* Impulsum-ARTests */,
+			);
+			name = "Impulsum-ARTests";
+			packageProductDependencies = (
+			);
+			productName = "Impulsum-ARTests";
+			productReference = 57B2BE962CAE8AE400527F61 /* Impulsum-ARTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		57B2BE9F2CAE8AE400527F61 /* Impulsum-ARUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 57B2BEB02CAE8AE400527F61 /* Build configuration list for PBXNativeTarget "Impulsum-ARUITests" */;
+			buildPhases = (
+				57B2BE9C2CAE8AE400527F61 /* Sources */,
+				57B2BE9D2CAE8AE400527F61 /* Frameworks */,
+				57B2BE9E2CAE8AE400527F61 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				57B2BEA22CAE8AE400527F61 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				57B2BEA32CAE8AE400527F61 /* Impulsum-ARUITests */,
+			);
+			name = "Impulsum-ARUITests";
+			packageProductDependencies = (
+			);
+			productName = "Impulsum-ARUITests";
+			productReference = 57B2BEA02CAE8AE400527F61 /* Impulsum-ARUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		57B2BE7E2CAE8AE200527F61 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					57B2BE852CAE8AE200527F61 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					57B2BE952CAE8AE400527F61 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 57B2BE852CAE8AE200527F61;
+					};
+					57B2BE9F2CAE8AE400527F61 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 57B2BE852CAE8AE200527F61;
+					};
+				};
+			};
+			buildConfigurationList = 57B2BE812CAE8AE200527F61 /* Build configuration list for PBXProject "Impulsum-AR" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 57B2BE7D2CAE8AE200527F61;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 57B2BE872CAE8AE200527F61 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				57B2BE852CAE8AE200527F61 /* Impulsum-AR */,
+				57B2BE952CAE8AE400527F61 /* Impulsum-ARTests */,
+				57B2BE9F2CAE8AE400527F61 /* Impulsum-ARUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		57B2BE842CAE8AE200527F61 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57B2BE942CAE8AE400527F61 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57B2BE9E2CAE8AE400527F61 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		57B2BE822CAE8AE200527F61 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57B2BE922CAE8AE400527F61 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57B2BE9C2CAE8AE400527F61 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		57B2BE982CAE8AE400527F61 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 57B2BE852CAE8AE200527F61 /* Impulsum-AR */;
+			targetProxy = 57B2BE972CAE8AE400527F61 /* PBXContainerItemProxy */;
+		};
+		57B2BEA22CAE8AE400527F61 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 57B2BE852CAE8AE200527F61 /* Impulsum-AR */;
+			targetProxy = 57B2BEA12CAE8AE400527F61 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		57B2BEA82CAE8AE400527F61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		57B2BEA92CAE8AE400527F61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		57B2BEAB2CAE8AE400527F61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Impulsum-AR/Preview Content\"";
+				DEVELOPMENT_TEAM = T7VZ3G3TGC;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "impulsum.Impulsum-AR";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		57B2BEAC2CAE8AE400527F61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Impulsum-AR/Preview Content\"";
+				DEVELOPMENT_TEAM = T7VZ3G3TGC;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "impulsum.Impulsum-AR";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		57B2BEAE2CAE8AE400527F61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T7VZ3G3TGC;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "impulsum.Impulsum-ARTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Impulsum-AR.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Impulsum-AR";
+			};
+			name = Debug;
+		};
+		57B2BEAF2CAE8AE400527F61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T7VZ3G3TGC;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "impulsum.Impulsum-ARTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Impulsum-AR.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Impulsum-AR";
+			};
+			name = Release;
+		};
+		57B2BEB12CAE8AE400527F61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T7VZ3G3TGC;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "impulsum.Impulsum-ARUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Impulsum-AR";
+			};
+			name = Debug;
+		};
+		57B2BEB22CAE8AE400527F61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T7VZ3G3TGC;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "impulsum.Impulsum-ARUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Impulsum-AR";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		57B2BE812CAE8AE200527F61 /* Build configuration list for PBXProject "Impulsum-AR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				57B2BEA82CAE8AE400527F61 /* Debug */,
+				57B2BEA92CAE8AE400527F61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		57B2BEAA2CAE8AE400527F61 /* Build configuration list for PBXNativeTarget "Impulsum-AR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				57B2BEAB2CAE8AE400527F61 /* Debug */,
+				57B2BEAC2CAE8AE400527F61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		57B2BEAD2CAE8AE400527F61 /* Build configuration list for PBXNativeTarget "Impulsum-ARTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				57B2BEAE2CAE8AE400527F61 /* Debug */,
+				57B2BEAF2CAE8AE400527F61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		57B2BEB02CAE8AE400527F61 /* Build configuration list for PBXNativeTarget "Impulsum-ARUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				57B2BEB12CAE8AE400527F61 /* Debug */,
+				57B2BEB22CAE8AE400527F61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 57B2BE7E2CAE8AE200527F61 /* Project object */;
+}
