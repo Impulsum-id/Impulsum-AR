@@ -1,0 +1,29 @@
+# macOS
+.DS_Store
+
+# Xcode
+*.xcodeproj
+*.xcworkspace
+*.xcuserdata
+*.xcuserstate
+
+# Swift Package Manager
+.build/
+Package.resolved
+.swiftpm/
+
+# CocoaPods (if applicable)
+Pods/
+
+# Carthage (if applicable)
+Carthage/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+
+# Derived Data
+DerivedData/
