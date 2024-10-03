@@ -1,0 +1,61 @@
+name: Impulsum-AR
+settings:
+  MARKETING_VERSION: "1.0"
+  CURRENT_PROJECT_VERSION: 1
+options:
+  bundleIdPrefix: com.impulsum
+packages:
+  FocusEntity:
+    url: https://github.com/maxxfrazer/FocusEntity
+    minorVersion: 2.5.1
+  Lottie:
+    url: https://github.com/airbnb/lottie-spm.git
+    minorVersion: 4.5.0
+targets:
+  Impulsum-AR:
+    type: application
+    platform: iOS
+    sources: [Impulsum-AR]
+    resources: [Resources]
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.impulsum.Impulsum-AR
+      INFOPLIST_FILE: Impulsum-AR/Info.plist
+    dependencies:
+      - package: FocusEntity
+      - package: Lottie
+
+  Impulsum-AR-Tests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [Impulsum-AR-Tests]
+    dependencies:
+      - target: Impulsum-AR
+    settings:
+      base:
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/Impulsum-AR.app/Impulsum-AR"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+  
+  Impulsum-AR-UITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [Impulsum-AR-UITests]
+    dependencies:
+      - target: Impulsum-AR
+    settings:
+      base:
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/Impulsum-AR.app/Impulsum-AR"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+
+schemes:
+  Impulsum-AR:
+    build:
+      targets:
+        Impulsum-AR: all
+        Impulsum-AR-Tests: all
+        Impulsum-AR-UITests: all
+    test:
+      targets:
+        - name: Impulsum-AR-Tests
+          gatherCoverageData: true
+        - name: Impulsum-AR-UITests
+          gatherCoverageData: false
