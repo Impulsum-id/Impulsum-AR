@@ -6,8 +6,8 @@ options:
   bundleIdPrefix: com.impulsum
 packages:
   FocusEntity:
-    url: https://github.com/maxxfrazer/FocusEntity
-    minorVersion: 2.5.1
+    url: https://github.com/rmRizki/FocusEntity
+    minorVersion: 1.0.0
   Lottie:
     url: https://github.com/airbnb/lottie-spm.git
     minorVersion: 4.5.0
