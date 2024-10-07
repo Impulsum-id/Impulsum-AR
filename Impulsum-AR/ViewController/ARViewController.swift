@@ -28,11 +28,23 @@ class ARViewController: UIViewController,ARSessionDelegate{
         
         let config = ARWorldTrackingConfiguration()
         config.planeDetection = [.horizontal, .vertical]
+        config.environmentTexturing = .automatic
         arView.session.run(config)
         
-        focusEntity = FocusEntity(on: arView, style: .classic(color: .white))
+        let textureActive = try! TextureResource.load(named: "focusActive")
+        let textureDisable = try! TextureResource.load(named: "focusDisable")
         
-        self.texture = loadTextureResource(named: "Texture")
+        focusEntity = FocusEntity(
+            on: arView,
+            style: .colored(
+                onColor: MaterialColorParameter.texture(textureActive),
+                offColor: MaterialColorParameter.texture(textureDisable),
+                nonTrackingColor: MaterialColorParameter.texture(textureDisable),
+                mesh: MeshResource.generatePlane(width: 0.1, depth: 0.1)
+            )
+        )
+        
+        self.texture = loadTextureResource(named: "dummy_texture")
         
         NotificationCenter.default.addObserver(forName: .placeModel, object: nil, queue: .main) { _ in
             self.placeModel(in: self.arView, focusEntity: self.focusEntity)
@@ -56,7 +68,10 @@ class ARViewController: UIViewController,ARSessionDelegate{
         }
         
         do {
-            let entity = try ModelEntity.loadModel(named: "Reticle")
+            let entity = try ModelEntity(
+                mesh: MeshResource.generatePlane(width: 0.05, depth: 0.05, cornerRadius: 50),
+                materials: [UnlitMaterial(color: .white)]
+            )
             let focusTransform = focusEntity.transformMatrix(relativeTo: nil)
             self.modelEntities.append(entity)
             
