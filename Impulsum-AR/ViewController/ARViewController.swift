@@ -10,7 +10,7 @@ import RealityKit
 import ARKit
 import FocusEntity
 
-class ViewController: UIViewController,ARSessionDelegate{
+class ARViewController: UIViewController,ARSessionDelegate{
     var modelEntities: [ModelEntity] = []
     var tapeEntity: ModelEntity? = nil;
     var distanceBetweenTwoPoints = 0;
