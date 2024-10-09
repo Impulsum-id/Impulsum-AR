@@ -71,7 +71,7 @@ class ARViewController: UIViewController,ARSessionDelegate{
         
         do {
             let entity = try ModelEntity(
-                mesh: MeshResource.generatePlane(width: 0.05, depth: 0.05, cornerRadius: 50),
+                mesh: MeshResource.generatePlane(width: 0.03, depth: 0.03, cornerRadius: 50),
                 materials: [UnlitMaterial(color: .white)]
             )
             let focusTransform = focusEntity.transformMatrix(relativeTo: nil)
@@ -97,8 +97,10 @@ class ARViewController: UIViewController,ARSessionDelegate{
             print("HAS DUPLICATE")
             let modelEntity = drawMesh(from: modelsPoints)
             let anchor = AnchorEntity(world: self.modelEntities.first!.position)
-            anchor.addChild(modelEntity)
-            arView.scene.addAnchor(anchor)
+            if modelEntity != nil {
+                anchor.addChild(modelEntity!)
+                arView.scene.addAnchor(anchor)
+            }
         }
         
     }
@@ -120,7 +122,7 @@ class ARViewController: UIViewController,ARSessionDelegate{
         let vector = end - start
         let length = simd_length(vector)
         
-        let boxMesh = MeshResource.generateBox(size: [0.02, 0.02, length])
+        let boxMesh = MeshResource.generateBox(size: [0.01, 0.01, length])
         let material = UnlitMaterial(color: .white)
         let lineEntity = ModelEntity(mesh: boxMesh, materials: [material])
         
@@ -129,15 +131,15 @@ class ARViewController: UIViewController,ARSessionDelegate{
         
         // Format the distance text
         let distanceText = String(format: "%.2f m", distance)
-        let textMesh = MeshResource.generateText(distanceText, extrusionDepth: 0.01, font: .systemFont(ofSize: 0.03), containerFrame: .zero, alignment: .center, lineBreakMode: .byWordWrapping)
-        let textMaterial = UnlitMaterial(color: .gray)
+        let textMesh = MeshResource.generateText(distanceText, extrusionDepth: 0, font: .systemFont(ofSize: 0.04), containerFrame: .zero, alignment: .center, lineBreakMode: .byWordWrapping)
+        var textMaterial = UnlitMaterial(color: .black)
         let textEntity = ModelEntity(mesh: textMesh, materials: [textMaterial])
         
         textEntity.position = (start + end) / 2.0
         textEntity.position.y += 0.02
         
         // Rotate the text to face upward (parallel to the floor)
-        textEntity.orientation = simd_quatf(angle: .pi / 2, axis: SIMD3<Float>(1, 0, 0))
+        textEntity.orientation = simd_quatf(angle: .pi / 2, axis: SIMD3<Float>(-1, 0, 0))
         
         let anchor = AnchorEntity()
         anchor.addChild(lineEntity)
@@ -146,11 +148,11 @@ class ARViewController: UIViewController,ARSessionDelegate{
     }
     
     /// Draw Mesh from all of the object position
-    func drawMesh(from points: [SIMD3<Float>]) -> ModelEntity {
+    func drawMesh(from points: [SIMD3<Float>]) -> ModelEntity? {
         
         guard points.count >= 3 else {
             print("Not enough points to form a mesh")
-            return ModelEntity()
+            return nil
         }
         
         var indices: [UInt32] = []
