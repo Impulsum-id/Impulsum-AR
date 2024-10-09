@@ -9,6 +9,7 @@ import SwiftUI
 import RealityKit
 import ARKit
 import FocusEntity
+import RealityGeometries
 
 class ARViewController: UIViewController,ARSessionDelegate{
     var modelEntities: [ModelEntity] = []
@@ -29,6 +30,7 @@ class ARViewController: UIViewController,ARSessionDelegate{
         let config = ARWorldTrackingConfiguration()
         config.planeDetection = [.horizontal, .vertical]
         config.environmentTexturing = .automatic
+        config.isLightEstimationEnabled = true
         arView.session.run(config)
         
         let textureActive = try! TextureResource.load(named: "focusActive")
@@ -44,7 +46,7 @@ class ARViewController: UIViewController,ARSessionDelegate{
             )
         )
         
-        self.texture = loadTextureResource(named: "dummy_texture")
+        self.texture = loadTextureResource(named: "tiled_dummy_texture")
         
         NotificationCenter.default.addObserver(forName: .placeModel, object: nil, queue: .main) { _ in
             self.placeModel(in: self.arView, focusEntity: self.focusEntity)
@@ -119,21 +121,23 @@ class ARViewController: UIViewController,ARSessionDelegate{
         let length = simd_length(vector)
         
         let boxMesh = MeshResource.generateBox(size: [0.02, 0.02, length])
-        let material = SimpleMaterial(color: .white, isMetallic: false)
+        let material = UnlitMaterial(color: .white)
         let lineEntity = ModelEntity(mesh: boxMesh, materials: [material])
         
         lineEntity.position = (start + end) / 2.0
-        
         lineEntity.look(at: end, from: lineEntity.position, relativeTo: nil)
         
-        let distance = String(format: "%.2f m", distance)
-        let textMesh = MeshResource.generateText(distance, extrusionDepth: 0.01, font: .systemFont(ofSize: 0.1), containerFrame: .zero, alignment: .center, lineBreakMode: .byWordWrapping)
-        let textMaterial = SimpleMaterial(color: .white, isMetallic: false)
+        // Format the distance text
+        let distanceText = String(format: "%.2f m", distance)
+        let textMesh = MeshResource.generateText(distanceText, extrusionDepth: 0.01, font: .systemFont(ofSize: 0.03), containerFrame: .zero, alignment: .center, lineBreakMode: .byWordWrapping)
+        let textMaterial = UnlitMaterial(color: .gray)
         let textEntity = ModelEntity(mesh: textMesh, materials: [textMaterial])
         
         textEntity.position = (start + end) / 2.0
         textEntity.position.y += 0.02
         
+        // Rotate the text to face upward (parallel to the floor)
+        textEntity.orientation = simd_quatf(angle: .pi / 2, axis: SIMD3<Float>(1, 0, 0))
         
         let anchor = AnchorEntity()
         anchor.addChild(lineEntity)
@@ -165,17 +169,15 @@ class ARViewController: UIViewController,ARSessionDelegate{
         print("Positions: ")
         print(points)
         
-        let repeatSize: Float = 0.6
-        let textureCoordinates = points.map { (position) -> SIMD2<Float> in
-            let u = position.x / repeatSize
-            let v = position.y / repeatSize
-            
-            return SIMD2<Float>(u, v)
+        let textureCoordinates = points.map { point in
+            let x = point.x
+            let z = point.z
+            return SIMD2<Float>(x, z)
         }
         print("Texture Coordinates: ")
         print(textureCoordinates)
         meshDescriptor.textureCoordinates = MeshBuffers.TextureCoordinates(textureCoordinates)
-        
+
         let normals = points.map { _ in SIMD3<Float>(0, 0, 1) }
         meshDescriptor.normals = MeshBuffers.Normals(normals)
         meshDescriptor.primitives = .triangles(indices)
@@ -188,10 +190,13 @@ class ARViewController: UIViewController,ARSessionDelegate{
             return ModelEntity()
         }
         
-        var material = SimpleMaterial()
-        material.baseColor = MaterialColorParameter.texture(texture)
-        material.roughness = 0.5
-        material.metallic = 0.0
+        var material = PhysicallyBasedMaterial()
+        let baseColor = MaterialParameters.Texture(texture)
+        material.baseColor = PhysicallyBasedMaterial.BaseColor(texture:baseColor)
+        material.textureCoordinateTransform.scale = SIMD2<Float>(2, 2)
+        material.roughness = PhysicallyBasedMaterial.Roughness(floatLiteral: 1.5)
+        material.metallic = PhysicallyBasedMaterial.Metallic(floatLiteral: 1.5)
+        material.emissiveIntensity = 3.0
         
         let modelEntity = ModelEntity(mesh: mesh, materials: [material])
         return modelEntity
