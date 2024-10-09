@@ -10,7 +10,7 @@ import RealityKit
 import ARKit
 import FocusEntity
 
-class ARViewController: UIViewController,ARSessionDelegate{
+class ARViewController: UIViewController,ARSessionDelegate {
     var modelEntities: [ModelEntity] = []
     var tapeEntity: ModelEntity? = nil;
     var distanceBetweenTwoPoints = 0;
@@ -18,7 +18,9 @@ class ARViewController: UIViewController,ARSessionDelegate{
     
     private var focusEntity: FocusEntity!
     private var arView: ARView!
-    private var texture: TextureResource!
+    var texture: TextureResource!
+    
+    weak var coachingDelegate: ARCoachingOverlayViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +32,8 @@ class ARViewController: UIViewController,ARSessionDelegate{
         config.planeDetection = [.horizontal, .vertical]
         config.environmentTexturing = .automatic
         arView.session.run(config)
+        
+        addCoaching()
         
         let textureActive = try! TextureResource.load(named: "focusActive")
         let textureDisable = try! TextureResource.load(named: "focusDisable")
@@ -44,12 +48,41 @@ class ARViewController: UIViewController,ARSessionDelegate{
             )
         )
         
+        focusEntity.isEnabled = false
+        
         self.texture = loadTextureResource(named: "dummy_texture")
         
         NotificationCenter.default.addObserver(forName: .placeModel, object: nil, queue: .main) { _ in
             self.placeModel(in: self.arView, focusEntity: self.focusEntity)
         }
+    }
+    
+    // Function to show or hide the focus entity
+    func setFocusEntityVisibility(isVisible: Bool) {
+        focusEntity.isEnabled = isVisible
+    }
+    
+    // Setup ARCoachingOverlayView
+    private func addCoaching() {
+        let coachingOverlay = ARCoachingOverlayView()
         
+        // Goal is a field that indicates your app's tracking requirements.
+        coachingOverlay.goal = .anyPlane
+         
+        // The session this view uses to provide coaching.
+        coachingOverlay.session = arView.session
+         
+        // How a view should resize itself when its superview's bounds change.
+        coachingOverlay.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        // Set the delegate
+        coachingOverlay.delegate = coachingDelegate
+        
+        // Set the frame to bounds
+        coachingOverlay.frame = view.bounds
+        
+        // Add the coaching overlay to the view
+        view.addSubview(coachingOverlay)
     }
     
     /// Place Model and check if there is any object nearby to lock the position
@@ -198,6 +231,8 @@ class ARViewController: UIViewController,ARSessionDelegate{
     }
     
     func loadTextureResource(named imageName: String) -> TextureResource? {
+        print("Selected Image: \(imageName)")
+        
         guard let uiImage = UIImage(named: imageName),
               let cgImage = uiImage.cgImage else {
             print("Failed to load image: \(imageName)")

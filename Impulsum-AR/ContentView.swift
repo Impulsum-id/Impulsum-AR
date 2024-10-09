@@ -9,27 +9,31 @@ import SwiftUI
 import RealityKit
 
 struct ContentView : View {
+    
+    @State private var isCoachingActive: Bool = true
+    
+    @State private var showSettings = false
+    
+    @State private var selectedImageName: String? = nil
 
     var body: some View {
         ZStack {
-            ARViewContainer().edgesIgnoringSafeArea(.all)
+            ARViewContainer(isCoachingActive: $isCoachingActive, selectedImageName: $selectedImageName)
+                .edgesIgnoringSafeArea(.all)
+            
             VStack {
+                if showSettings {
+                    MaterialSettingsView(selectedImageName: $selectedImageName)
+                }
+                
                 Spacer()
-                Button(action: {
-                    NotificationCenter.default.post(name: .placeModel, object: nil)
-                }){
-                    Image(systemName: "plus")
-                        .font(.headline)
-                        .foregroundStyle(.black)
-                        .padding()
-                        .background(.white)
-                        .clipShape(Circle())
-                        .padding()
+                
+                if !isCoachingActive {
+                    TabView(showSettings: $showSettings)
                 }
             }
         }
     }
-
 }
 
 #Preview {
