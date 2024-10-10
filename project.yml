@@ -11,6 +11,9 @@ packages:
   Lottie:
     url: https://github.com/airbnb/lottie-spm.git
     minorVersion: 4.5.0
+  RealityGeometries:
+    url: https://github.com/maxxfrazer/RealityGeometries
+    minorVersion: 1.1.2
 targets:
   Impulsum-AR:
     type: application
@@ -22,6 +25,7 @@ targets:
       INFOPLIST_FILE: Impulsum-AR/Info.plist
     dependencies:
       - package: FocusEntity
+      - package: RealityGeometries
       - package: Lottie
 
   Impulsum-AR-Tests:
