@@ -144,7 +144,7 @@ class ARViewController: UIViewController,ARSessionDelegate{
     }
     
     /// Draw Mesh from all of the object position
-    func drawMesh(from points: [SIMD3<Float>]) -> ModelEntity {
+    func drawMesh(from points: [SIMD3<Float>]) -> ModelEntity? {
 
         guard points.count >= 3 else {
             print("Not enough points to form a mesh")
