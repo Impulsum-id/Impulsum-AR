@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import FocusEntity
 import RealityKit
 import ARKit
-import FocusEntity
+import SceneKit
 
 class ARViewController: UIViewController,ARSessionDelegate{
     var modelEntities: [ModelEntity] = []
@@ -90,14 +91,25 @@ class ARViewController: UIViewController,ARSessionDelegate{
         
         let modelsPoints = self.modelEntities.map{$0.position(relativeTo: nil)}
         if(hasDuplicatePoints(in: modelsPoints)){
-            print("HAS DUPLICATE")
-            let modelEntity = drawMesh(from: modelsPoints.dropLast())
+            let newPoints: [SIMD3<Float>] =  modelsPoints.dropLast()
+            
+            // Draw Mesh
+            let modelEntity = drawMesh(from: newPoints)
+            
+            // Draw Button
+            let centroid = calculateCentroid(of: newPoints)
+            let buttonEntity = createButtonEntity(at: centroid)
+            
+            // Append Mesh & Button to Anchor
             let anchor = AnchorEntity(world: self.modelEntities.first!.position)
-            if modelEntity != nil {
-                anchor.addChild(modelEntity!)
-                arView.scene.addAnchor(anchor)
+            guard modelEntity else {
             }
+            
+            anchor.addChild(modelEntity!)
+            anchor.addChild(buttonEntity)
+            arView.scene.addAnchor(anchor)
         }
+        
         
     }
     
@@ -185,7 +197,16 @@ class ARViewController: UIViewController,ARSessionDelegate{
         return modelEntity
     }
 
-
+    func createButtonEntity(at position: SIMD3<Float>) -> ModelEntity {
+        let buttonSize: Float = 0.1 // Adjust size as needed
+        let buttonMesh = MeshResource.generatePlane(width: buttonSize, height: buttonSize)
+        var buttonMaterial = SimpleMaterial()
+        buttonMaterial.baseColor = .color(.blue)
+        let buttonEntity = ModelEntity(mesh: buttonMesh, materials: [buttonMaterial])
+        buttonEntity.position = position
+        buttonEntity.name = "buttonEntity"
+        return buttonEntity
+    }
     
     func loadTextureResource(named imageName: String) -> TextureResource? {
         guard let uiImage = UIImage(named: imageName),

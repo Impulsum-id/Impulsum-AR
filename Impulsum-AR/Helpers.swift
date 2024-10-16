@@ -113,3 +113,9 @@ func generateMesh(_ points: [SIMD3<Float>])->[UInt32]{
     
     return indices
 }
+
+func calculateCentroid(of points: [SIMD3<Float>]) -> SIMD3<Float> {
+    let sum = points.reduce(SIMD3<Float>(0, 0, 0), +)
+    return sum / Float(points.count)
+}
+
