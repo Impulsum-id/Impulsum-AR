@@ -9,7 +9,6 @@ import SwiftUI
 import RealityKit
 import ARKit
 import FocusEntity
-import RealityGeometries
 
 class ARViewController: UIViewController,ARSessionDelegate{
     var modelEntities: [ModelEntity] = []
@@ -69,20 +68,17 @@ class ARViewController: UIViewController,ARSessionDelegate{
             }
         }
         
-        do {
-            let entity = try ModelEntity(
-                mesh: MeshResource.generatePlane(width: 0.03, depth: 0.03, cornerRadius: 50),
-                materials: [UnlitMaterial(color: .white)]
-            )
-            let focusTransform = focusEntity.transformMatrix(relativeTo: nil)
-            self.modelEntities.append(entity)
-            
-            let anchorEntity = AnchorEntity(world: isLockedEntity?.transformMatrix(relativeTo: nil) ?? focusTransform )
-            anchorEntity.addChild(modelEntities[self.modelEntities.count - 1])
-            arView.scene.addAnchor(anchorEntity)
-        } catch {
-            print("Failed to load model: \(error)")
-        }
+        let entity = ModelEntity(
+            mesh: MeshResource.generatePlane(width: 0.05, depth: 0.05, cornerRadius: 50),
+            materials: [UnlitMaterial(color: .white)]
+        )
+        let focusTransform = focusEntity.transformMatrix(relativeTo: nil)
+        self.modelEntities.append(entity)
+        
+        let anchorEntity = AnchorEntity(world: isLockedEntity?.transformMatrix(relativeTo: nil) ?? focusTransform )
+        anchorEntity.addChild(modelEntities[self.modelEntities.count - 1])
+        arView.scene.addAnchor(anchorEntity)
+       
         
         let modelsLength = self.modelEntities.count
         if(modelsLength >= 2){
@@ -95,7 +91,7 @@ class ARViewController: UIViewController,ARSessionDelegate{
         let modelsPoints = self.modelEntities.map{$0.position(relativeTo: nil)}
         if(hasDuplicatePoints(in: modelsPoints)){
             print("HAS DUPLICATE")
-            let modelEntity = drawMesh(from: modelsPoints)
+            let modelEntity = drawMesh(from: modelsPoints.dropLast())
             let anchor = AnchorEntity(world: self.modelEntities.first!.position)
             if modelEntity != nil {
                 anchor.addChild(modelEntity!)
@@ -149,41 +145,23 @@ class ARViewController: UIViewController,ARSessionDelegate{
     
     /// Draw Mesh from all of the object position
     func drawMesh(from points: [SIMD3<Float>]) -> ModelEntity? {
-        
+
         guard points.count >= 3 else {
             print("Not enough points to form a mesh")
             return nil
         }
-        
-        var indices: [UInt32] = []
-        for i in 1...(points.count-3){
-            indices.append(0)
-            indices.append(UInt32(i))
-            indices.append(UInt32(i + 1))
-            
-            indices.append(0)
-            indices.append(UInt32(i + 1))
-            indices.append(UInt32(i))
-        }
-        
+
+        var indices: [UInt32] = generateMesh(points)
         var meshDescriptor = MeshDescriptor()
         meshDescriptor.positions = MeshBuffers.Positions(points)
-        print("Positions: ")
-        print(points)
         
-        let textureCoordinates = points.map { point in
-            let x = point.x
-            let z = point.z
-            return SIMD2<Float>(x, z)
-        }
-        print("Texture Coordinates: ")
-        print(textureCoordinates)
+        let textureCoordinates = points.map { SIMD2<Float>($0.x, $0.z)}
         meshDescriptor.textureCoordinates = MeshBuffers.TextureCoordinates(textureCoordinates)
 
-        let normals = points.map { _ in SIMD3<Float>(0, 0, 1) }
+        let normals = points.map { _ in SIMD3<Float>(0, 1, 0) } // Adjusted normal direction
         meshDescriptor.normals = MeshBuffers.Normals(normals)
         meshDescriptor.primitives = .triangles(indices)
-        
+
         let mesh: MeshResource
         do {
             mesh = try MeshResource.generate(from: [meshDescriptor])
@@ -191,7 +169,7 @@ class ARViewController: UIViewController,ARSessionDelegate{
             print("Failed to generate mesh: \(error)")
             return ModelEntity()
         }
-        
+
         var material = PhysicallyBasedMaterial()
         let baseColor = MaterialParameters.Texture(texture)
         material.baseColor = PhysicallyBasedMaterial.BaseColor(texture: baseColor)
@@ -202,10 +180,12 @@ class ARViewController: UIViewController,ARSessionDelegate{
         material.roughness = PhysicallyBasedMaterial.Roughness(floatLiteral: 1.5)
         material.metallic = PhysicallyBasedMaterial.Metallic(floatLiteral: 1.5)
         material.emissiveIntensity = 3.0
-        
+
         let modelEntity = ModelEntity(mesh: mesh, materials: [material])
         return modelEntity
     }
+
+
     
     func loadTextureResource(named imageName: String) -> TextureResource? {
         guard let uiImage = UIImage(named: imageName),
