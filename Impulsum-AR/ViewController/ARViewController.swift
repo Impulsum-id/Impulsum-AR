@@ -102,15 +102,14 @@ class ARViewController: UIViewController,ARSessionDelegate{
             
             // Append Mesh & Button to Anchor
             let anchor = AnchorEntity(world: self.modelEntities.first!.position)
-            guard modelEntity else {
+            guard modelEntity != nil else {
+                return print("Error: Mesh not created")
             }
             
             anchor.addChild(modelEntity!)
             anchor.addChild(buttonEntity)
             arView.scene.addAnchor(anchor)
         }
-        
-        
     }
     
     /// Check For Duplicates
@@ -202,6 +201,7 @@ class ARViewController: UIViewController,ARSessionDelegate{
         let buttonMesh = MeshResource.generatePlane(width: buttonSize, height: buttonSize)
         var buttonMaterial = SimpleMaterial()
         buttonMaterial.baseColor = .color(.blue)
+        
         let buttonEntity = ModelEntity(mesh: buttonMesh, materials: [buttonMaterial])
         buttonEntity.position = position
         buttonEntity.name = "buttonEntity"
