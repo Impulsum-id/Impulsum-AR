@@ -45,7 +45,7 @@ class ARViewController: UIViewController,ARSessionDelegate{
             )
         )
         
-        self.texture = loadTextureResource(named: "tiled_dummy_texture")
+        self.texture = loadTextureResource(named: "tile_0")
         
         NotificationCenter.default.addObserver(forName: .placeModel, object: nil, queue: .main) { _ in
             self.placeModel(in: self.arView, focusEntity: self.focusEntity)
@@ -93,8 +93,10 @@ class ARViewController: UIViewController,ARSessionDelegate{
             print("HAS DUPLICATE")
             let modelEntity = drawMesh(from: modelsPoints.dropLast())
             let anchor = AnchorEntity(world: self.modelEntities.first!.position)
-            anchor.addChild(modelEntity)
-            arView.scene.addAnchor(anchor)
+            if modelEntity != nil {
+                anchor.addChild(modelEntity!)
+                arView.scene.addAnchor(anchor)
+            }
         }
         
     }
@@ -116,7 +118,7 @@ class ARViewController: UIViewController,ARSessionDelegate{
         let vector = end - start
         let length = simd_length(vector)
         
-        let boxMesh = MeshResource.generateBox(size: [0.02, 0.02, length])
+        let boxMesh = MeshResource.generateBox(size: [0.01, 0.01, length])
         let material = UnlitMaterial(color: .white)
         let lineEntity = ModelEntity(mesh: boxMesh, materials: [material])
         
@@ -125,15 +127,15 @@ class ARViewController: UIViewController,ARSessionDelegate{
         
         // Format the distance text
         let distanceText = String(format: "%.2f m", distance)
-        let textMesh = MeshResource.generateText(distanceText, extrusionDepth: 0.01, font: .systemFont(ofSize: 0.03), containerFrame: .zero, alignment: .center, lineBreakMode: .byWordWrapping)
-        let textMaterial = UnlitMaterial(color: .gray)
+        let textMesh = MeshResource.generateText(distanceText, extrusionDepth: 0, font: .systemFont(ofSize: 0.04), containerFrame: .zero, alignment: .center, lineBreakMode: .byWordWrapping)
+        let textMaterial = UnlitMaterial(color: .black)
         let textEntity = ModelEntity(mesh: textMesh, materials: [textMaterial])
         
         textEntity.position = (start + end) / 2.0
         textEntity.position.y += 0.02
         
         // Rotate the text to face upward (parallel to the floor)
-        textEntity.orientation = simd_quatf(angle: .pi / 2, axis: SIMD3<Float>(1, 0, 0))
+        textEntity.orientation = simd_quatf(angle: .pi / 2, axis: SIMD3<Float>(-1, 0, 0))
         
         let anchor = AnchorEntity()
         anchor.addChild(lineEntity)
@@ -146,7 +148,7 @@ class ARViewController: UIViewController,ARSessionDelegate{
 
         guard points.count >= 3 else {
             print("Not enough points to form a mesh")
-            return ModelEntity()
+            return nil
         }
 
         var indices: [UInt32] = generateMesh(points)
@@ -171,9 +173,12 @@ class ARViewController: UIViewController,ARSessionDelegate{
         var material = PhysicallyBasedMaterial()
         let baseColor = MaterialParameters.Texture(texture)
         material.baseColor = PhysicallyBasedMaterial.BaseColor(texture: baseColor)
-        material.textureCoordinateTransform.scale = SIMD2<Float>(2, 2)
-        material.roughness = .init(floatLiteral: 1.5)
-        material.metallic = .init(floatLiteral: 1.5)
+        let scaleFactor: Float = 0.01
+        let tileWidth: Float = 50 * scaleFactor
+        let tileHeight: Float = 50 * scaleFactor
+        material.textureCoordinateTransform.scale = SIMD2<Float>(1.0 / tileWidth, 1.0 / tileHeight)
+        material.roughness = PhysicallyBasedMaterial.Roughness(floatLiteral: 1.5)
+        material.metallic = PhysicallyBasedMaterial.Metallic(floatLiteral: 1.5)
         material.emissiveIntensity = 3.0
 
         let modelEntity = ModelEntity(mesh: mesh, materials: [material])
@@ -188,11 +193,8 @@ class ARViewController: UIViewController,ARSessionDelegate{
             print("Failed to load image: \(imageName)")
             return nil
         }
-        
-        let options = TextureResource.CreateOptions(semantic: .color, mipmapsMode: .allocateAndGenerateAll)
-        
         do {
-            let texture = try TextureResource.generate(from: cgImage, options: options)
+            let texture = try TextureResource.generate(from: cgImage, options: .init(semantic: nil))
             return texture
         } catch {
             print("Failed to create texture resource: \(error)")
