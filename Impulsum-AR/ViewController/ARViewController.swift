@@ -162,7 +162,7 @@ class ARViewController: UIViewController,ARSessionDelegate{
             return nil
         }
 
-        var indices: [UInt32] = generateMesh(points)
+        let indices: [UInt32] = generateMesh(points)
         var meshDescriptor = MeshDescriptor()
         meshDescriptor.positions = MeshBuffers.Positions(points)
         
