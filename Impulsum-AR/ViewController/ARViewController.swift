@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import FocusEntity
 import RealityKit
 import ARKit
-import FocusEntity
+import SceneKit
 
 class ARViewController: UIViewController,ARSessionDelegate{
     var modelEntities: [ModelEntity] = []
@@ -90,15 +91,25 @@ class ARViewController: UIViewController,ARSessionDelegate{
         
         let modelsPoints = self.modelEntities.map{$0.position(relativeTo: nil)}
         if(hasDuplicatePoints(in: modelsPoints)){
-            print("HAS DUPLICATE")
-            let modelEntity = drawMesh(from: modelsPoints.dropLast())
+            let newPoints: [SIMD3<Float>] =  modelsPoints.dropLast()
+            
+            // Draw Mesh
+            let modelEntity = drawMesh(from: newPoints)
+            
+            // Draw Button
+            let centroid = calculateCentroid(of: newPoints)
+            let buttonEntity = createButtonEntity(at: centroid)
+            
+            // Append Mesh & Button to Anchor
             let anchor = AnchorEntity(world: self.modelEntities.first!.position)
-            if modelEntity != nil {
-                anchor.addChild(modelEntity!)
-                arView.scene.addAnchor(anchor)
+            guard modelEntity != nil else {
+                return print("Error: Mesh not created")
             }
+            
+            anchor.addChild(modelEntity!)
+            anchor.addChild(buttonEntity)
+            arView.scene.addAnchor(anchor)
         }
-        
     }
     
     /// Check For Duplicates
@@ -151,7 +162,7 @@ class ARViewController: UIViewController,ARSessionDelegate{
             return nil
         }
 
-        var indices: [UInt32] = generateMesh(points)
+        let indices: [UInt32] = generateMesh(points)
         var meshDescriptor = MeshDescriptor()
         meshDescriptor.positions = MeshBuffers.Positions(points)
         
@@ -185,6 +196,18 @@ class ARViewController: UIViewController,ARSessionDelegate{
         return modelEntity
     }
 
+    func createButtonEntity(at position: SIMD3<Float>) -> ModelEntity {
+        let buttonSize: Float = 0.1 // Adjust size as needed
+        let buttonMesh = MeshResource.generatePlane(width: buttonSize, height: buttonSize)
+        var buttonMaterial = SimpleMaterial()
+        buttonMaterial.baseColor = .color(.blue)
+        
+        let buttonEntity = ModelEntity(mesh: buttonMesh, materials: [buttonMaterial])
+        buttonEntity.position = position
+        buttonEntity.name = "buttonEntity"
+        return buttonEntity
+    }
+    
     func loadTextureResource(named imageName: String, borderColor: UIColor = .gray, borderWidth: CGFloat = 2) -> TextureResource? {
         guard let uiImage = UIImage(named: imageName),
               let cgImage = uiImage.cgImage else {
